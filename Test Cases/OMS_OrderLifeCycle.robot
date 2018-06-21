@@ -22,6 +22,7 @@ Verify whether Petco order with Single_Line item and credit card payment is ship
 *** Keywords ***
 Place a Regular Petco Order with Single Line Item
     frameXML
+    fetchEnvironmentData
     ${orderNo}=   orderPlacement
     set global variable  ${orderNo}
     #log to console  Order is placed successfully and the status +${orderPlacedStatus}
