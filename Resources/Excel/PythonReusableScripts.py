@@ -51,6 +51,7 @@ class OMSReusableScripts:
         print(worksheet.cell(rowCtr, 0).value)
         paymentXMLTag=worksheet.cell(rowCtr, 1).value
 
+
     def InsertPaymentDetails(self):
         global resXML
         #print resXML.find("<PaymentMethods>")

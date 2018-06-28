@@ -13,15 +13,19 @@ ${var_orderNo} =   765832063
 
 *** Keywords ***
 Place a Regular Petco Order with Single Line Item
+    #log to console  "Twist"
+    #log to console   ${TEST NAME}
+    Set Global Variable    ${lst_ScenarioData}    ${empty}
     fetchEnvironmentData
-    ${lst_ScenarioData}=   fetchScenarioData   1
+    #${lst_ScenarioData}=   fetchScenarioData   1
+    ${ScenarioNumber}=   fetchScenarioNumber   ${TEST NAME}
+    ${lst_ScenarioData}=   fetchScenarioData   ${ScenarioNumber}
     frameXML   ${lst_ScenarioData}
-#    ${orderNo}=   orderPlacement
-#    set global variable  ${orderNo}
+    ${orderNo}=   orderPlacement
+    set global variable  ${orderNo}
     #log to console  Order is placed successfully and the status +${orderPlacedStatus}
 
 Remove the Hold and Authorize the order
-    #remorseHoldRelease
     authorizeOrder
     #log to console   Hold is removed successfully +${orderPlacedStatus}
 

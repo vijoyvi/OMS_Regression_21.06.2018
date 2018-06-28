@@ -13,10 +13,17 @@ Resource     C:/Robot_Vijoy/OMS_Regression/Keyword/Keywords.Robot
 ${var_orderNo} =   765832063
 
 *** Test Cases ***
-Verify whether Petco order with Single_Line item and credit card payment is shipped properly
+Verify whether Petco order with Single_ Line item and Visa is shipped to DC associated with Northeast MA region
    Place a Regular Petco Order with Single Line Item
-#   Remove the Hold and Authorize the order
-#   Connecting to the Oracle Database using Robot Framework
-#   Schedule and Release the Order
-#   Full ship the order and check the status of the Order
+   Remove the Hold and Authorize the order
+   Connecting to the Oracle Database using Robot Framework
+   Schedule and Release the Order
+   Full ship the order and check the status of the Order
+
+Verify whether Petco order with Single_ Line item and Amex is shipped to DC associated with Northeast RI region
+   Place a Regular Petco Order with Single Line Item
+   Remove the Hold and Authorize the order
+   Connecting to the Oracle Database using Robot Framework
+   Schedule and Release the Order
+   Full ship the order and check the status of the Order
 
