@@ -13,58 +13,35 @@ ${var_orderNo} =   765832063
 
 *** Keywords ***
 Place a Regular Petco Order with Single Line Item
+    #log to console  "Twist"
+    #log to console   ${TEST NAME}
     Set Global Variable    ${lst_ScenarioData}    ${empty}
     fetchEnvironmentData
+    #${lst_ScenarioData}=   fetchScenarioData   1
     ${ScenarioNumber}=   fetchScenarioNumber   ${TEST NAME}
     ${lst_ScenarioData}=   fetchScenarioData   ${ScenarioNumber}
     frameXML   ${lst_ScenarioData}
     ${orderNo}=   orderPlacement
     set global variable  ${orderNo}
-
-Place a Repeat Delivery Order with Single Line Item
-    Set Global Variable    ${lst_ScenarioData}    ${empty}
-    fetchEnvironmentData
-    ${ScenarioNumber}=   fetchScenarioNumber   ${TEST NAME}
-    ${lst_ScenarioData}=   fetchScenarioData   ${ScenarioNumber}
-    frameXML   ${lst_ScenarioData}
-    setRepeatDeliveryFlag
-    ${orderNo}=   orderPlacement
-    set global variable  ${orderNo}
-
-Place a Regular Petco Order with Multiple Line Items
-    Set Global Variable    ${lst_ScenarioData}    ${empty}
-    fetchEnvironmentData
-    ${ScenarioNumber}=   fetchScenarioNumber   ${TEST NAME}
-    ${lst_ScenarioData}=   fetchScenarioData   ${ScenarioNumber}
-    frameXML   ${lst_ScenarioData}
-    ${orderNo}=   orderPlacement
-    set global variable  ${orderNo}
-
-Place a Repeat Delivery Order with Multiple Line Items
-    Set Global Variable    ${lst_ScenarioData}    ${empty}
-    fetchEnvironmentData
-    ${ScenarioNumber}=   fetchScenarioNumber   ${TEST NAME}
-    ${lst_ScenarioData}=   fetchScenarioData   ${ScenarioNumber}
-    frameXML   ${lst_ScenarioData}
-    setRepeatDeliveryFlag
-    ${orderNo}=   orderPlacement
-    set global variable  ${orderNo}
-
-
+    #log to console  Order is placed successfully and the status +${orderPlacedStatus}
 
 Remove the Hold and Authorize the order
     authorizeOrder
+    #log to console   Hold is removed successfully +${orderPlacedStatus}
 
 Connecting to the Oracle Database using Robot Framework
     connect to database using custom params  cx_Oracle  ${DB_CONNECT_STRING}
     @{queryResults}  Query  ${DB_Select_Query}'${orderNo}'
     ${orderLineKey}   set variable   ${queryResults[0][2]}
+    #log to console  @{queryResults}
+    #log to console  ${orderLineKey}
     FetchOrderLineKey   ${orderLineKey}
     #FetchOrderLineKey  Function present in the Authorize Order class
 
 Schedule and Release the Order
     scheduleOrder
     releaseOrder
+    #log to console   ***Order is scheduled and released successfully
 
 Full ship the order and check the status of the Order
     shipOrder
