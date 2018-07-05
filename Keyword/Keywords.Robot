@@ -50,6 +50,23 @@ Place a Repeat Delivery Order with Multiple Line Items
     ${orderNo}=   orderPlacement
     set global variable  ${orderNo}
 
+Place a Mercent Order with Single Line Item
+    Set Global Variable    ${lst_ScenarioData}    ${empty}
+    fetchEnvironmentData
+    ${ScenarioNumber}=   fetchScenarioNumber   ${TEST NAME}
+    ${lst_ScenarioData}=   fetchScenarioData   ${ScenarioNumber}
+    frameMercentXML   ${lst_ScenarioData}
+    ${orderNo}=   orderPlacement_Mercent
+    set global variable  ${orderNo}
+
+Place a Petnet Order with Single Line Item
+    Set Global Variable    ${lst_ScenarioData}    ${empty}
+    fetchEnvironmentData
+    ${ScenarioNumber}=   fetchScenarioNumber   ${TEST NAME}
+    ${lst_ScenarioData}=   fetchScenarioData   ${ScenarioNumber}
+    framePetnetXML   ${lst_ScenarioData}
+    ${orderNo}=   orderPlacement_Regular
+    set global variable  ${orderNo}
 
 
 Remove the Hold and Authorize the order
@@ -65,6 +82,7 @@ Connecting to the Oracle Database using Robot Framework
 Schedule and Release the Order
     scheduleOrder
     releaseOrder
+    validateReleaseNode
 
 Full ship the order and check the status of the Order
     shipOrder
