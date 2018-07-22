@@ -140,8 +140,20 @@ Schedule and Release the Order
     releaseOrder
     validateReleaseNode
 
+Schedule and Acknowledge the PO Order
+    scheduleOrder
+    releaseOrder
+    validateReleaseNode
+
+
 Full ship the order and check the status of the Order
     shipOrder
+
+Ship the PO order and check the status of the Order
+    ${chainedOrderNumber}=  createChainedOrder
+    acknowledgePO
+    shipPOOrder   ${chainedOrderNumber}
+
     #log to console   ***Order is shipped successfully
 
 #Test Keyword

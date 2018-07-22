@@ -947,3 +947,18 @@ OMS_TC_068_Verify whether DFS order with Multi_Line items is shipped properly to
    Remove the Hold and Authorize the DFS order
    Schedule and Release the Order
    Full ship the order and check the status of the Order
+
+#PO Scenarios - Need to Frame all the scenarios after manipulating the Scenarios
+OMS_TC_129_Verify whether PO order with Single_ Line item and Visa is shipped to DC associated with Northeast MA region
+  Place a PO Order with Single Line Item
+  Fetch OrderHeaderKey from Oracle database
+  Remove the Hold and Authorize the order
+  Schedule and Acknowledge the PO Order
+  Ship the PO order and check the status of the Order
+
+OMS_TC_130_Verify whether PO order with Single_ Line item and Visa is shipped to DC associated with Southwest NV region
+  Place a PO Order with Single Line Item
+  Fetch OrderHeaderKey from Oracle database
+  Remove the Hold and Authorize the order
+  Schedule and Acknowledge the PO Order
+  Ship the PO order and check the status of the Order
