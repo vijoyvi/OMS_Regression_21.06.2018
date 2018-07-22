@@ -114,6 +114,15 @@ Place a PO Order with Single Line Item
     ${orderNo}=   orderPlacement_Regular
     set global variable  ${orderNo}
 
+Place a Bundled Order with Single Line Item
+    Set Global Variable    ${lst_ScenarioData}    ${empty}
+    fetchEnvironmentData   ${dataSheetpath}
+    ${ScenarioNumber}=   fetchScenarioNumber   ${TEST NAME}
+    ${lst_ScenarioData}=   fetchScenarioData   ${ScenarioNumber}
+    frameBundledXML   ${lst_ScenarioData}
+    ${orderNo}=   orderPlacement
+    set global variable  ${orderNo}
+
 Remove the Hold and Authorize the order
     authorizeOrder
 
